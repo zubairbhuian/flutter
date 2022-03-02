@@ -17,5 +17,3 @@ text: const TextSpan(
     ]))
 
 ```
-
-> [Go Back](/)
