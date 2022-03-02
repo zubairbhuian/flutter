@@ -18,4 +18,4 @@ text: const TextSpan(
 
 ```
 
-> [Go Back](/README.md)
+> [Go Back](/)
