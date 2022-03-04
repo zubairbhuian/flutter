@@ -4,6 +4,10 @@
 ```dart
  Navigator.push(context,MaterialPageRoute(builder: (context) =>FristScreen()))
 ```
+> We can change MaterialPageRoute to **CupertinoPageRoute** for different transition
+```dart
+ Navigator.push(context,CupertinoPageRoute(builder: (context) =>FristScreen()))
+```
 
 > ## Full Code
 ```dart

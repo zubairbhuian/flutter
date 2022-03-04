@@ -15,3 +15,4 @@
 > ## There are  __  Navigaton Ways
 > - [PushName Navigation](/navigation/pushName.md)
 > - [Push Navigation](/navigation/push.md)
+> -[pushReplacement](/navigation/pushReplacement.md)
