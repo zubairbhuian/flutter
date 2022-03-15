@@ -1,5 +1,5 @@
 > - # Path
-> \android.\gradlew signingReport>
+> \android .\gradlew signingReport>
 
 ```cmd
    .\gradlew signingReport
