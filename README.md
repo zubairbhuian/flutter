@@ -12,7 +12,7 @@
 <!-- !Navigation -->
 > ## [Navigation](/navigation/pushName.md)
 > ![](/navigation/img/navigation.png)
-> ## There are  __  Navigaton Ways
+> ## There are Three  Navigaton Ways
 > - [PushName Navigation](/navigation/pushName.md)
 > - [Push Navigation](/navigation/push.md)
 > - [pushReplacement](/navigation/pushReplacement.md)
