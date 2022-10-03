@@ -23,4 +23,9 @@
 > ##  [Form Validation Logic]()
 <!--!Search -->
 > ##  [Search](/search/README.md)
+<!--!Build APK -->
+ ##  Build APK 
+ ```dart
+  flutter build apk --build-name=1.0 --build-number=1
+```
 
