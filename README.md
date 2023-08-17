@@ -1,6 +1,6 @@
 # Flutter 
 
-# [Tooltip](/functions/README.md)
+# [Function](/functions/README.md)
 
 
 <!-- !Tooltip -->
