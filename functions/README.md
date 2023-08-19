@@ -18,3 +18,25 @@
     return visiblePart + hiddenPart + visiblePart2;
     }
 ```
+
+
+> ## Countdown Timer
+> - img
+> - need to pass Future time 
+> - The function returns the amount of time left until the target time
+``` dart
+  String getTimeDifference(DateTime target) {
+    Duration difference = target.difference(DateTime.now());
+    if (difference.isNegative) {
+      return 'Time has passed';
+    }
+    int days = difference.inDays;
+    int hours = difference.inHours.remainder(24);
+    int minutes = difference.inMinutes.remainder(60);
+    int seconds = difference.inSeconds.remainder(60);
+
+    return '${days}d | ${hours}h | ${minutes}m | ${seconds}s';
+  }
+```
+
+
