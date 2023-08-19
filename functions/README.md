@@ -1,5 +1,4 @@
-# Function 
-
+# Function
 
 > ## Hide Text
 > - img
@@ -38,5 +37,36 @@
     return '${days}d | ${hours}h | ${minutes}m | ${seconds}s';
   }
 ```
+
+> ## Countdown Timer 2 (For TextFiled)
+> - img
+> - need to pass Future time  
+> - The function returns the amount of time left until the target time
+``` dart
+  String getTimeDifference(DateTime target) {
+      Duration difference = target.difference(DateTime.now());
+      if (difference.isNegative) {
+        return '0s';
+      }
+      int days = difference.inDays;
+      int hours = difference.inHours.remainder(24);
+      int minutes = difference.inMinutes.remainder(60);
+      int seconds = difference.inSeconds.remainder(60);
+      if (seconds == 0 && minutes == 0 && hours == 0 && days == 0) {
+        return '0s';
+      } else if (minutes == 0 && hours == 0 && days == 0) {
+        return '${seconds}s';
+      } else if (hours == 0 && days == 0) {
+        return '${minutes}m ${seconds}s';
+      } else if (days == 0) {
+        return ' ${hours}h ${minutes}m ${seconds}s';
+      }
+
+      return '${days}d ${hours}h ${minutes}m ${seconds}s';
+  }
+```
+
+
+
 
 
