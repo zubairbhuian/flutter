@@ -1,6 +1,7 @@
 ``` dart
 
 import 'package:flutter/material.dart';
+
 // +++++++ dot widgets ++++++++
 class DotContainer extends StatelessWidget {
   final Widget child;
@@ -29,33 +30,37 @@ class DotContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Container(
-          padding: padding,
-          margin: margin,
-          decoration: BoxDecoration(
-              color: color,
-              borderRadius: BorderRadius.circular(borderRadius ?? 12)),
-          child: child,
-        ),
-        Positioned(
-          left: 0,
-          right: 0,
-          top: 0,
-          bottom: 0,
-          child: SizedBox(
-              child: CustomPaint(
-            painter: _DottedBorderPainter(
-                dotShape: StrokeCap.round,
-                borderRadius: borderRadius ?? 4,
-                color: color ?? Colors.black,
-                dotWidth: dotWidth ?? 1,
-                dotheith: dotheith ?? 2,
-                dotgap: dotgap ?? 2),
-          )),
-        ),
-      ],
+    return Container(
+      margin: margin,
+      decoration: BoxDecoration(
+          color: color,
+          borderRadius: BorderRadius.circular(borderRadius ?? 12)),
+      child: Stack(
+        children: [
+          Container(
+            padding: padding,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(borderRadius ?? 12)),
+            child: child,
+          ),
+          Positioned(
+            left: 0,
+            right: 0,
+            top: 0,
+            bottom: 0,
+            child: SizedBox(
+                child: CustomPaint(
+              painter: _DottedBorderPainter(
+                  dotShape: StrokeCap.round,
+                  borderRadius: borderRadius ?? 4,
+                  color: dotColor ?? Colors.black,
+                  dotWidth: dotWidth ?? 1,
+                  dotheith: dotheith ?? 2,
+                  dotgap: dotgap ?? 2),
+            )),
+          ),
+        ],
+      ),
     );
   }
 }
@@ -93,7 +98,7 @@ class _DottedBorderPainter extends CustomPainter {
       ..addRRect(RRect.fromRectAndRadius(
           Offset.zero & size, Radius.circular(borderRadius)));
     canvas.drawPath(
-     // dot width & height
+      // dot width & height
       dashPath(path, dashWidth: dotheith, dashSpace: dotgap),
       paint,
     );
@@ -109,6 +114,7 @@ class _DottedBorderPainter extends CustomPainter {
     return false;
   }
 }
+
 // ++++++++ dot path ++++++++++++
 Path dashPath(Path path, {double dashWidth = 3.0, double dashSpace = 2.0}) {
   final metrics = path.computeMetrics();
@@ -127,4 +133,5 @@ Path dashPath(Path path, {double dashWidth = 3.0, double dashSpace = 2.0}) {
 
   return dashPath;
 }
+
 ```
