@@ -66,6 +66,24 @@
   }
 ```
 
+> ## M B count
+> - img
+
+``` dart
+  String formatLargeNumber(double number) {
+    if (number >= 1000000000) {
+      // Billion (B) abbreviation
+      return (number / 1000000000).toStringAsFixed(2) + 'B';
+    } else if (number >= 1000000) {
+      // Million (M) abbreviation
+      return (number / 1000000).toStringAsFixed(2) + 'M';
+    } else {
+      return number.toStringAsFixed(2); // No abbreviation needed
+    }
+  }
+  
+```
+
 
 
 
