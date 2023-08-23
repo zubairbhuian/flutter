@@ -1,6 +1,7 @@
 
 # [Widgets](/widgets/README.md)
 # [Function](/functions/README.md)
+# [Script](/script/README.md)
 
 
 
@@ -23,8 +24,7 @@
 > - [PushName Navigation](/navigation/pushName.md)
 > - [Push Navigation](/navigation/push.md)
 > - [pushReplacement](/navigation/pushReplacement.md)
-<!-- !SHA-1 -->
-> ## [SHA-1](/signingReport/README.md)
+
 <!-- !Form Validation  -->
 > ##  [Form Validation With RegExp](/formvalidation/README.md)
 > ##  [Form Validation Logic]()
