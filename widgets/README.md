@@ -184,120 +184,78 @@
 > ## Selected TextField
 > - need to pass a List<String>  
 ``` dart
-    class CustomDropdownTextFiel extends StatefulWidget {
-    const CustomDropdownTextFiel(
-        {super.key,
-        required this.label,
-        required this.data,
-        required this.onChanged,
-        this.hint});
+class CustomDropdownTextField extends StatelessWidget {
+  const CustomDropdownTextField(
+      {super.key,
+      this.label,
+      required this.data,
+      required this.onChanged,
+      this.hint, this.marginBottom});
 
-    final String label;
-    final List data;
-    final Widget? hint;
-    final Function(String?) onChanged;
+  final String? label;
+  final double? marginBottom;
+  final List data;
+  final Widget? hint;
+  final Function(String?) onChanged;
 
-    @override
-    State<CustomDropdownTextFiel> createState() => _CustomDropdownTextFielState();
-    }
-
-    class _CustomDropdownTextFielState extends State<CustomDropdownTextFiel> {
-    FocusNode _focusNode = FocusNode();
-    bool _isFocused = false;
-
-    @override
-    void initState() {
-        super.initState();
-        _focusNode.addListener(_onFocusChange);
-    }
-
-    @override
-    void dispose() {
-        _focusNode.removeListener(_onFocusChange);
-        _focusNode.dispose();
-        super.dispose();
-    }
-
-    void _onFocusChange() {
-        setState(() {
-        _isFocused = _focusNode.hasFocus;
-        });
-    }
-
-    @override
-    Widget build(BuildContext context) {
-        return Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-            Text(
-            widget.label,
-            style: TextStyle(
-                fontSize: 14.sp,
-                color: Color.fromARGB(255, 255, 255, 255),
-            ),
-            ),
-            SizedBox(height: 8.h),
-            Container(
-            decoration: ShapeDecoration(
-                color: Colors.black,
-                shape:
-                    RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-                shadows: _isFocused ? [] : inputShadow,
-            ),
-            child: DropdownButtonFormField<String>(
-                hint: widget.hint ??
-                    Text(
-                    'Select',
-                    style: TextStyle(
-                        color: Color(0xFFC0C0C0),
-                        fontSize: 16,
-                        fontFamily: 'Poppins',
-                        fontWeight: FontWeight.w400,
-                        letterSpacing: 0.15,
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+         // label text
+        if (label != null)
+          Text(
+            label ?? '',
+            style: kTitleSmall(),
+          ),
+        // gapping
+        SizedBox(height: label == null ? 0 : 8),
+        DropdownButtonFormField<String>(
+          //hint Style
+          hint: hint ??
+              Text(
+                'Admin',
+                style: kTitleSmall()?.copyWith(color: kTextColorLite),
+              ),
+          // arrow icon
+          // icon: SvgPicture.asset('assets/icons/arrow-down.svg'),
+          dropdownColor: kWhite,
+          decoration: InputDecoration(
+              // padding
+              contentPadding:
+                  const EdgeInsets.symmetric(vertical: 18, horizontal: 20),
+              // border 
+              border: InputBorder.none,
+              focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8),
+                  borderSide: const BorderSide(color: kTextColor)),
+              enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8.r),
+                  borderSide: const BorderSide(color: kTextColor)),
+              // filled color 
+              filled: true,
+              // Set the background color here
+              fillColor: kWhite,
+              ),
+          // generate select items
+          items: List.generate(
+              data.length,
+              (index) => DropdownMenuItem<String>(
+                    value: data[index],
+                    child: Text(
+                      data[index],
+                      style: kTitleSmall()?.copyWith(color: kTextColor),
                     ),
-                    ),
-                icon: SvgPicture.asset('assets/icons/arrow-down.svg'),
-                dropdownColor: Colors.black,
-                decoration: InputDecoration(
-                    contentPadding:
-                        EdgeInsets.symmetric(vertical: 18, horizontal: 20),
-                    border: InputBorder.none,
-                    focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8),
-                        borderSide: const BorderSide(color: Colors.white)),
-                    enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8.r),
-                        borderSide: const BorderSide(color: Colors.black)),
-                    filled: true,
-                    fillColor: Colors.black,
-                    hintStyle: TextStyle(
-                        color: Colors.black,
-                        fontSize: 16.sp) // Set the background color here
-                    ),
-                items: List.generate(
-                    widget.data.length,
-                    (index) => DropdownMenuItem<String>(
-                        value: widget.data[index],
-                        child: Text(
-                            widget.data[index],
-                            style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16,
-                            fontFamily: 'Poppins',
-                            fontWeight: FontWeight.w400,
-                            height: 1.50,
-                            letterSpacing: 0.15,
-                            ),
-                        ),
-                        )),
-                onChanged: widget.onChanged,
-            ),
-            ),
-            SizedBox(height: 24.h),
-        ],
-        );
-    }
-    }
+                  )),
+          onChanged: onChanged,
+        ),
+        // bottom gap
+        SizedBox(height:marginBottom?? 16),
+      ],
+    );
+  }
+}
 
 
 ```
