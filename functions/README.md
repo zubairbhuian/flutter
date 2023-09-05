@@ -84,6 +84,100 @@
   
 ```
 
+> ## Dialog
+> - img
+
+``` dart
+class PopupDialog {
+  // base dialog
+  static dynamic base({
+    required Widget child,
+    BuildContext? context,
+    double? width,
+    double? borderRadius,
+    Color? barrierColor,
+    Color?shadowColor,
+    double? elevation,
+    EdgeInsets? padding
+    }) {
+    return showDialog<void>(
+      // Context
+      context:context?? kGlobContext,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return Column(
+          // for horizontal minHeight
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            // for ertical minWidth
+            Center(
+              child: SizedBox(
+                // dialog width
+                width:width?? 380.w,
+                child:Material(
+                  elevation:elevation?? 2,
+                  // dialog color
+                  shadowColor:shadowColor??Colors.black12,
+                  // backgraund color
+                  color: kWhite,
+                  // border radius
+                  borderRadius:BorderRadius.circular(borderRadius??12) ,
+                  // main body
+                  child: Padding(
+                    // padding
+                    padding:padding?? EdgeInsets.zero,
+                    child: child,
+                  )),
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
+}
+  
+```
+
+> ## Custom SnackBar
+> - Global context
+
+``` dart
+class NavigationService {
+  static final navigatorKey = GlobalKey<NavigatorState>();
+}
+
+```
+> - SnackBar
+``` dart
+class MySnackBar {
+  BuildContext? context;
+
+  MySnackBar({this.context});
+
+  void show(String message, {int duration = 3}) {
+    final context =
+        this.context ?? NavigationService.navigatorKey.currentContext!;
+
+    SnackBar snackBar = SnackBar(
+      backgroundColor: kTextColor,
+      content: Text(message,style: const TextStyle(
+        color: kWhite,
+        fontSize: 16,
+        fontWeight: FontWeight.w500
+      ),),
+      duration: Duration(seconds: duration),
+    );
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
+}
+
+```
+
+
+
+
+
 
 
 
