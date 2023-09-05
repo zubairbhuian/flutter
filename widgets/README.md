@@ -190,20 +190,24 @@ class CustomDropdownTextField extends StatelessWidget {
       this.label,
       required this.data,
       required this.onChanged,
-      this.hint, this.marginBottom});
+      this.hintText,
+      this.marginBottom,
+      this.contentPadding, this.width});
 
   final String? label;
   final double? marginBottom;
+  final double? width;
   final List data;
-  final Widget? hint;
+  final String? hintText;
   final Function(String?) onChanged;
+  final EdgeInsetsGeometry? contentPadding;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-         // label text
+        // label text
         if (label != null)
           Text(
             label ?? '',
@@ -213,45 +217,52 @@ class CustomDropdownTextField extends StatelessWidget {
         SizedBox(height: label == null ? 0 : 8),
         DropdownButtonFormField<String>(
           //hint Style
-          hint: hint ??
-              Text(
-                'Admin',
-                style: kTitleSmall()?.copyWith(color: kTextColorLite),
-              ),
+          hint: SizedBox(
+            width: width,
+            child: Text(
+              hintText ?? 'Select',
+              overflow: TextOverflow.ellipsis,
+              style: kTitleSmall()?.copyWith(color: kTextColorLite),
+            ),
+          ),
           // arrow icon
           // icon: SvgPicture.asset('assets/icons/arrow-down.svg'),
           dropdownColor: kWhite,
           decoration: InputDecoration(
-              // padding
-              contentPadding:
-                  const EdgeInsets.symmetric(vertical: 18, horizontal: 20),
-              // border 
-              border: InputBorder.none,
-              focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8),
-                  borderSide: const BorderSide(color: kTextColor)),
-              enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8.r),
-                  borderSide: const BorderSide(color: kTextColor)),
-              // filled color 
-              filled: true,
-              // Set the background color here
-              fillColor: kWhite,
-              ),
+            // padding
+            contentPadding: contentPadding ??
+                const EdgeInsets.symmetric(vertical: 18, horizontal: 20),
+            // border
+            border: InputBorder.none,
+            focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8),
+                borderSide: const BorderSide(color: kTextColor)),
+            enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8.r),
+                borderSide: const BorderSide(color: kTextColor)),
+            // filled color
+            filled: true,
+            // Set the background color here
+            fillColor: kWhite,
+          ),
           // generate select items
           items: List.generate(
               data.length,
               (index) => DropdownMenuItem<String>(
                     value: data[index],
-                    child: Text(
-                      data[index],
-                      style: kTitleSmall()?.copyWith(color: kTextColor),
+                    child: SizedBox(
+                      width: width,
+                      child: Text(
+                        data[index],
+                        overflow: TextOverflow.ellipsis,
+                        style: kTitleSmall()?.copyWith(color: kTextColor),
+                      ),
                     ),
                   )),
           onChanged: onChanged,
         ),
         // bottom gap
-        SizedBox(height:marginBottom?? 16),
+        SizedBox(height: marginBottom ?? 16),
       ],
     );
   }
