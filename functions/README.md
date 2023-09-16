@@ -19,6 +19,25 @@
 ```
 
 
+> ## Date Time Formater
+> - need to pass DateTime 
+> - return it String
+```dart
+    String formatDateTime(DateTime dateTime) {
+      // Extract the day, month, and year components from the DateTime object
+      int day = dateTime.day;
+      int month = dateTime.month;
+      int year = dateTime.year;
+
+      // Create a formatted string in "dd/mm/yyyy" format
+      String formattedDate = '$day/${month.toString().padLeft(2, '0')}/$year';
+
+      return formattedDate;
+    }
+
+```
+
+
 > ## Countdown Timer
 > - img
 > - need to pass Future time 
