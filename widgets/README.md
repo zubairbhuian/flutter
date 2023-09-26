@@ -273,6 +273,41 @@ class CustomDropdownTextField extends StatelessWidget {
 
 
 
+> ## Selected DropDown Button
+> - need to pass a List<String>  
+``` dart
+ class CustomDropDownButton extends StatelessWidget {
+  final List<String> data;
+  final String value;
+  final Function(String?)? onChanged;
+
+  const CustomDropDownButton({
+    Key? key,
+    required this.data,
+    required this.value,
+    this.onChanged,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return DropdownButton<String>(
+      underline: const SizedBox(), 
+      value: value,
+      onChanged:onChanged,
+      items: data.map((String option) {
+        return DropdownMenuItem<String>(
+          value: option,
+          child: Text(option,style: kLabelMedium.copyWith(fontWeight: FontWeight.w600),),
+        );
+      }).toList(),
+    );
+  }
+}
+
+```
+
+
+
 > ## DotContainer
 ``` dart
 import 'package:flutter/material.dart';
